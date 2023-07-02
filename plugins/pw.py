@@ -76,9 +76,9 @@ async def account_login(bot: Client, m: Message):
 
             'content-type': 'application/json; charset=UTF-8',
 
-        # 'content-length': '89',
+         'content-length': '89',
 
-        # 'accept-encoding': 'gzip' ,
+         'accept-encoding': 'gzip' ,
     }
 
     params = {
@@ -97,10 +97,10 @@ async def account_login(bot: Client, m: Message):
     response = requests.get('https://api.penpencil.xyz/v3/batches/my-batches', params=params, headers=headers).json()["data"]
     for data in response:
         batch=(data["name"])
-        #batchId=(data["_id"])
+        batchId=(data["_id"])
         aa=f"```{data['name']}```  :  ```{data['_id']}\n```"
         await m.reply_text(aa)
-    #time.sleep(2)
+    time.sleep(2)
     editable1= await m.reply_text("**Now send the Batch ID to Download**")
     input3 = message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
@@ -108,9 +108,9 @@ async def account_login(bot: Client, m: Message):
     await editable1.edit("subject : subjectId")
     vj=""
     for data in response2:
-       #topic=(data["subject"])
-        #topic_id=(data["_id"])
-        #idid=f"{topic_id}&"
+       topic=(data["subject"])
+        topic_id=(data["_id"])
+        idid=f"{topic_id}&"
         bb=f"{data['_id']}&"
         await m.reply_text(bb)
     vj=""
@@ -128,9 +128,9 @@ async def account_login(bot: Client, m: Message):
     input5: Message = await bot.listen(editable.chat.id)
     raw_text5 = input5.text
     
-    #await m.reply_text("**Enter Title**")
-    #input0: Message = await bot.listen(editable.chat.id)
-    #raw_text0 = input0.text
+    await m.reply_text("**Enter Title**")
+    input0: Message = await bot.listen(editable.chat.id)
+    raw_text0 = input0.text
 
     editable4= await m.reply_text("Now send the **Thumb url** Eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
     input6 = message = await bot.listen(editable.chat.id)
@@ -157,56 +157,56 @@ async def account_login(bot: Client, m: Message):
             
             params4 = {'page': '4','tag': '','contentType': 'exercises-notes-videos','ut': ''}
             response6 = requests.get(f'https://api.penpencil.xyz/v2/batches/{raw_text3}/subject/{t}/contents', params=params4, headers=headers).json()["data"]
-            #await m.reply_text(response3)
+            await m.reply_text(response3)
             try:
                 for data in response3:
                     class_title=(data["topic"])
                     class_url=data["url"].replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("mpd", "m3u8").strip()
-                #cc=f"```{data['topic']}```:```{data['url']}\n```"
+                cc=f"```{data['topic']}```:```{data['url']}\n```"
                     cc = f"{data['topic']}:{data['url']}"
                     with open(f"{batch}.txt", 'a') as f:
                         f.write(f"{class_title}:{class_url}\n")
-                #await m.reply_text(cc)
-                #await m.reply_document(f"{batch}.txt")
+                await m.reply_text(cc)
+                await m.reply_document(f"{batch}.txt")
             except Exception as e:
                await m.reply_text(str(e))
-            #await m.reply_document(f"{batch}.txt")
+            await m.reply_document(f"{batch}.txt")
             try:
                 for data in response4:
                     class_title=(data["topic"])
                     class_url=data["url"].replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("mpd", "m3u8").strip()
-                #cc=f"```{data['topic']}```:```{data['url']}\n```"
+                cc=f"```{data['topic']}```:```{data['url']}\n```"
                     cc = f"{data['topic']}:{data['url']}"
                     with open(f"{batch}.txt", 'a') as f:
                         f.write(f"{class_title}:{class_url}\n")
-                #await m.reply_text(cc)
-                #await m.reply_document(f"{batch}.txt")
+                await m.reply_text(cc)
+                await m.reply_document(f"{batch}.txt")
             except Exception as e:
                await m.reply_text(str(e))
-            #await m.reply_document(f"{batch}.txt")
+            await m.reply_document(f"{batch}.txt")
             try:
                 for data in response5:
                     class_title=(data["topic"])
                     class_url=data["url"].replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("mpd", "m3u8").strip()
-                #cc=f"```{data['topic']}```:```{data['url']}\n```"
+                cc=f"```{data['topic']}```:```{data['url']}\n```"
                     cc = f"{data['topic']}:{data['url']}"
                     with open(f"{batch}.txt", 'a') as f:
                      f.write(f"{class_title}:{class_url}\n")
-                #await m.reply_text(cc)
-                #await m.reply_document(f"{batch}.txt")
+                await m.reply_text(cc)
+                await m.reply_document(f"{batch}.txt")
             except Exception as e:
                await m.reply_text(str(e))
-            #await m.reply_document(f"{batch}.txt")
+            await m.reply_document(f"{batch}.txt")
             try:
                 for data in response6:
                     class_title=(data["topic"])
                     class_url=data["url"].replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("mpd", "m3u8").strip()
-                #cc=f"```{data['topic']}```:```{data['url']}\n```"
+                cc=f"```{data['topic']}```:```{data['url']}\n```"
                     cc = f"{data['topic']}:{data['url']}"
                     with open(f"{batch}.txt", 'a') as f:
                         f.write(f"{class_title}:{class_url}\n")
-                #await m.reply_text(cc)
-                #await m.reply_document(f"{batch}.txt")
+                await m.reply_text(cc)
+                await m.reply_document(f"{batch}.txt")
             except Exception as e:
                await m.reply_text(str(e))
             await m.reply_document(f"{batch}.txt")
