@@ -108,7 +108,7 @@ async def account_login(bot: Client, m: Message):
     await editable1.edit("subject : subjectId")
     vj=""
     for data in response2:
-       #topic=(data["subject"])
+       topic=(data["subject"])
         #topic_id=(data["_id"])
         #idid=f"{topic_id}&"
         bb=f"{data['_id']}&"
@@ -132,15 +132,15 @@ async def account_login(bot: Client, m: Message):
     #input0: Message = await bot.listen(editable.chat.id)
     #raw_text0 = input0.text
 
-    editable4= await m.reply_text("Now send the **Thumb url** Eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
-    input6 = message = await bot.listen(editable.chat.id)
-    raw_text6 = input6.text
-    thumb = input6.text
-    if thumb.startswith("http://") or thumb.startswith("https://"):
-        getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
-        thumb = "thumb.jpg"
-    else:
-        thumb == "no"
+    #editable4= await m.reply_text("Now send the **Thumb url** Eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
+    #input6 = message = await bot.listen(editable.chat.id)
+    #raw_text6 = input6.text
+    #thumb = input6.text
+    #if thumb.startswith("http://") or thumb.startswith("https://"):
+        #getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
+        #thumb = "thumb.jpg"
+    #else:
+        #thumb == "no"
     try:
         xv = raw_text4.split('&')
 
