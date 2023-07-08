@@ -108,7 +108,7 @@ async def account_login(bot: Client, m: Message):
     await editable1.edit("subject : subjectId")
     vj=""
     for data in response2:
-       topic=(data["subject"])
+        #topic=(data["subject"])
         #topic_id=(data["_id"])
         #idid=f"{topic_id}&"
          bb=f"{data['_id']}&"
