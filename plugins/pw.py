@@ -103,12 +103,117 @@ async def account_login(bot: Client, m: Message):
     #time.sleep(2)
     editable1= await m.reply_text("**Now send the Batch ID to Download**")
     input3 = message = await bot.listen(editable.chat.id)
+#  mit license
+#
+#  copyright (c) 2019-present dan <https://github.com/delivrance>
+#
+#  permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "software"), to deal
+#  in the software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the software, and to permit persons to whom the software is
+#  furnished to do so, subject to the following conditions:
+#
+#  the above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the software.
+#
+#  the software is provided "as is", without warranty of any kind, express or
+#  implied, including but not limited to the warranties of merchantability,
+#  fitness for a particular purpose and noninfringement. in no event shall the
+#  authors or copyright holders be liable for any claim, damages or other
+#  liability, whether in an action of contract, tort or otherwise, arising from,
+#  out of or in connection with the software or the use or other dealings in the
+#  software
+#  code edited by cryptostark
+import urllib
+import urllib.parse
+import requests
+import json
+import subprocess
+from pyrogram.types.messages_and_media import message
+import helper
+from pyromod import listen
+from pyrogram.types import message
+import tgcrypto
+import pyrogram
+from pyrogram import client, filters
+from pyrogram.types.messages_and_media import message
+from pyrogram.types import inlinekeyboardbutton, inlinekeyboardmarkup
+from pyrogram.errors import floodwait
+import time
+from pyrogram.types import user, message
+from p_bar import progress_bar
+from subprocess import getstatusoutput
+import logging
+import os
+import sys
+import re
+from pyrogram import client as bot
+import cloudscraper
+from crypto.cipher import aes
+from crypto.util.padding import unpad
+from base64 import b64encode, b64decode
+
+@bot.on_message(filters.command(["pw"]))
+async def account_login(bot: client, m: message):
+    editable = await m.reply_text(
+        "send **auth code** in this manner otherwise bot will not respond.\n\nsend like this:-  **auth code**"
+    )  
+    input1: message = await bot.listen(editable.chat.id)
+    raw_text1=input1.text
+    headers = {
+
+            'host': 'api.penpencil.xyz',
+
+            'authorization': f"bearer {raw_text1}",
+
+            'client-id': '5eb393ee95fab7468a79d189',
+
+            'client-version': '12.84',
+
+            'user-agent': 'android',
+
+            'randomid': 'e4307177362e86f1',
+
+            'client-type': 'mobile',
+
+            'device-meta': '{app_version:12.84,device_make:asus,device_model:asus_x00td,os_version:6,package_name:xyz.penpencil.physicswalb}',
+
+            'content-type': 'application/json; charset=utf-8',
+
+        # 'content-length': '89',
+
+        # 'accept-encoding': 'gzip' ,
+    }
+
+    params = {
+       'mode': '1',
+       'filter': 'false',
+       'exam': '',
+       'amount': '',
+       'organisationid': '5eb393ee95fab7468a79d189',
+       'classes': '',
+       'limit': '20',
+       'page': '1',
+       'programid': '',
+       'ut': '1652675230446', 
+    }
+    await editable.edit("**you have these batches :-\n\nbatch id : batch name**")
+    response = requests.get('https://api.penpencil.xyz/v3/batches/my-batches', params=params, headers=headers).json()["data"]
+    for data in response:
+        batch=(data["name"])
+        #batchid=(data["_id"])
+        aa=f"```{data['name']}```  :  ```{data['_id']}\n```"
+        await m.reply_text(aa)
+    #time.sleep(2)
+    editable1= await m.reply_text("**now send the batch id to download**")
+    input3 = message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     response2 = requests.get(f'https://api.penpencil.xyz/v3/batches/{raw_text3}/details', headers=headers).json()["data"]["subjects"]
-    await editable1.edit("subject : subjectId")
+    await editable1.edit("subject : subjectid")
     vj=""
     for data in response2:
-       topic=(data["subject"])
+       #topic=(data["subject"])
         #topic_id=(data["_id"])
         #idid=f"{topic_id}&"
         bb=f"{data['_id']}&"
@@ -121,41 +226,41 @@ async def account_login(bot: Client, m: Message):
             await m.reply_text(idid)
             vj = ""
         vj+=idid
-    editable2= await m.reply_text("**Enter this to download full batch :-**\n```{vj}```")
+    editable2= await m.reply_text("**enter this to download full batch :-**\n```{vj}```")
     input4 = message = await bot.listen(editable.chat.id)
     raw_text4 = input4.text
-    await m.reply_text("**Enter resolution**")
-    input5: Message = await bot.listen(editable.chat.id)
+    await m.reply_text("**enter resolution**")
+    input5: message = await bot.listen(editable.chat.id)
     raw_text5 = input5.text
     
-    #await m.reply_text("**Enter Title**")
-    #input0: Message = await bot.listen(editable.chat.id)
+    #await m.reply_text("**enter title**")
+    #input0: message = await bot.listen(editable.chat.id)
     #raw_text0 = input0.text
 
-    #editable4= await m.reply_text("Now send the **Thumb url** Eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor Send **no**")
-    #input6 = message = await bot.listen(editable.chat.id)
-    #raw_text6 = input6.text
-    #thumb = input6.text
-    #if thumb.startswith("http://") or thumb.startswith("https://"):
-        #getstatusoutput(f"wget '{thumb}' -O 'thumb.jpg'")
-        #thumb = "thumb.jpg"
-    #else:
-        #thumb == "no"
+    editable4= await m.reply_text("now send the **thumb url** eg : ```https://telegra.ph/file/d9e24878bd4aba05049a1.jpg```\n\nor send **no**")
+    input6 = message = await bot.listen(editable.chat.id)
+    raw_text6 = input6.text
+    thumb = input6.text
+    if thumb.startswith("http://") or thumb.startswith("https://"):
+        getstatusoutput(f"wget '{thumb}' -o 'thumb.jpg'")
+        thumb = "thumb.jpg"
+    else:
+        thumb == "no"
     try:
         xv = raw_text4.split('&')
 
         for y in range(0,len(xv)):
             t =xv[y]
-            params1 = {'page': '1','tag': '','contentType': 'exercises-notes-videos','ut': ''}
+            params1 = {'page': '1','tag': '','contenttype': 'exercises-notes-videos','ut': ''}
             response3 = requests.get(f'https://api.penpencil.xyz/v2/batches/{raw_text3}/subject/{t}/contents', params=params1, headers=headers).json()["data"]
             
-            params2 = {'page': '2','tag': '','contentType': 'exercises-notes-videos','ut': ''}
+            params2 = {'page': '2','tag': '','contenttype': 'exercises-notes-videos','ut': ''}
             response4 = requests.get(f'https://api.penpencil.xyz/v2/batches/{raw_text3}/subject/{t}/contents', params=params2, headers=headers).json()["data"]
             
-            params3 = {'page': '3','tag': '','contentType': 'exercises-notes-videos','ut': ''}
+            params3 = {'page': '3','tag': '','contenttype': 'exercises-notes-videos','ut': ''}
             response5 = requests.get(f'https://api.penpencil.xyz/v2/batches/{raw_text3}/subject/{t}/contents', params=params3, headers=headers).json()["data"]
             
-            params4 = {'page': '4','tag': '','contentType': 'exercises-notes-videos','ut': ''}
+            params4 = {'page': '4','tag': '','contenttype': 'exercises-notes-videos','ut': ''}
             response6 = requests.get(f'https://api.penpencil.xyz/v2/batches/{raw_text3}/subject/{t}/contents', params=params4, headers=headers).json()["data"]
             #await m.reply_text(response3)
             try:
@@ -168,7 +273,7 @@ async def account_login(bot: Client, m: Message):
                         f.write(f"{class_title}:{class_url}\n")
                 #await m.reply_text(cc)
                 #await m.reply_document(f"{batch}.txt")
-            except Exception as e:
+            except exception as e:
                await m.reply_text(str(e))
             #await m.reply_document(f"{batch}.txt")
             try:
@@ -181,7 +286,7 @@ async def account_login(bot: Client, m: Message):
                         f.write(f"{class_title}:{class_url}\n")
                 #await m.reply_text(cc)
                 #await m.reply_document(f"{batch}.txt")
-            except Exception as e:
+            except exception as e:
                await m.reply_text(str(e))
             #await m.reply_document(f"{batch}.txt")
             try:
@@ -194,7 +299,7 @@ async def account_login(bot: Client, m: Message):
                      f.write(f"{class_title}:{class_url}\n")
                 #await m.reply_text(cc)
                 #await m.reply_document(f"{batch}.txt")
-            except Exception as e:
+            except exception as e:
                await m.reply_text(str(e))
             #await m.reply_document(f"{batch}.txt")
             try:
@@ -207,9 +312,9 @@ async def account_login(bot: Client, m: Message):
                         f.write(f"{class_title}:{class_url}\n")
                 #await m.reply_text(cc)
                 #await m.reply_document(f"{batch}.txt")
-            except Exception as e:
+            except exception as e:
                await m.reply_text(str(e))
             await m.reply_document(f"{batch}.txt")
-    except Exception as e:
+    except exception as e:
         await m.reply_text(str(e))
     
